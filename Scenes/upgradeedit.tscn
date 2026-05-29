@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://cpbw0qijwc153"]
+
+[ext_resource type="Script" uid="uid://cgkhiee76eonc" path="res://Scripts/upgradeedit.gd" id="1_rmw84"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rmw84"]
+font_size = 30
+
+[node name="upgradeedit" type="Control" unique_id=1606163344]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 1.0
+offset_right = 808.0
+offset_bottom = 384.0
+scale = Vector2(0.9, 0.9)
+
+[node name="upgradeedit" type="VBoxContainer" parent="." unique_id=2004742859]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 803.0
+offset_bottom = 379.0
+script = ExtResource("1_rmw84")
+
+[node name="StartUnlock" type="LineEdit" parent="upgradeedit" unique_id=1844768661]
+layout_mode = 2
+placeholder_text = "Unlocked from Start: ..."
+
+[node name="BtnAddUpgrade" type="Button" parent="upgradeedit" unique_id=1949196751]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+ ADD UPGRADE TIER +"
+
+[node name="EditTierCost" type="HBoxContainer" parent="upgradeedit" unique_id=1175251809]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Tiers" type="VBoxContainer" parent="upgradeedit" unique_id=619383315]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 8.5
+
+[node name="AddRow" type="Button" parent="upgradeedit" unique_id=1421186970]
+layout_mode = 2
+size_flags_vertical = 3
+text = "+ Add Upgrade Row +"
+
+[node name="Save" type="Button" parent="upgradeedit" unique_id=534726875]
+layout_mode = 2
+size_flags_vertical = 3
+text = "SAVE"
+
+[node name="UpgradeMenu" type="HBoxContainer" parent="." unique_id=1121738968]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 60.0
+offset_right = 649.5
+offset_bottom = 294.0
+
+[node name="Descriptions" type="VBoxContainer" parent="UpgradeMenu" unique_id=539844241]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="UpgradeMenu/Descriptions" unique_id=723376998]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Upgrade Title:"
+label_settings = SubResource("LabelSettings_rmw84")
+
+[node name="Label3" type="Label" parent="UpgradeMenu/Descriptions" unique_id=336328271]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Upgrade Description:"
+label_settings = SubResource("LabelSettings_rmw84")
+
+[node name="Label4" type="Label" parent="UpgradeMenu/Descriptions" unique_id=1037035393]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Unlocks:"
+label_settings = SubResource("LabelSettings_rmw84")
+
+[node name="Cancel" type="Button" parent="UpgradeMenu/Descriptions" unique_id=652514706]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Cancel"
+
+[node name="Content" type="VBoxContainer" parent="UpgradeMenu" unique_id=352892779]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="LineEdit" parent="UpgradeMenu/Content" unique_id=1702316779]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Description" type="LineEdit" parent="UpgradeMenu/Content" unique_id=1773317858]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Unlocks" type="TextEdit" parent="UpgradeMenu/Content" unique_id=977894569]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Seperate every UG ID like this: UG_id_1, UG_id_x, and so on"
+
+[node name="Save" type="Button" parent="UpgradeMenu/Content" unique_id=1329998761]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Save"

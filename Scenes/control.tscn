@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://5fgsx0es3ow0"]
+
+[ext_resource type="Script" uid="uid://c7io40x8hpsy5" path="res://Scripts/main.gd" id="1_0fbet"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sjmnu"]
+font_size = 32
+
+[node name="Control" type="Control" unique_id=503868757]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0fbet")
+
+[node name="GeneralSettings" type="VBoxContainer" parent="." unique_id=119785787]
+layout_mode = 0
+offset_top = 82.0
+offset_right = 755.0
+offset_bottom = 596.0
+
+[node name="FileSettings" type="HBoxContainer" parent="GeneralSettings" unique_id=502971110]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Mapname" type="Label" parent="GeneralSettings/FileSettings" unique_id=1433714234]
+layout_mode = 2
+text = "     Map file:        "
+
+[node name="LineEdit" type="LineEdit" parent="GeneralSettings/FileSettings" unique_id=312728421]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter the name OF THE FOLDER of your map here..."
+
+[node name="open" type="Button" parent="GeneralSettings/FileSettings" unique_id=1190761005]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.24
+text = "Open"
+
+[node name="ChooseFile" type="HBoxContainer" parent="GeneralSettings" unique_id=37570154]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Meta" type="Button" parent="GeneralSettings/ChooseFile" unique_id=1817217963]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Meta"
+
+[node name="recipes-fuel" type="Button" parent="GeneralSettings/ChooseFile" unique_id=520463119]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fuel"
+
+[node name="recipes-pit" type="Button" parent="GeneralSettings/ChooseFile" unique_id=1143772544]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pit"
+
+[node name="recipes-stamper" type="Button" parent="GeneralSettings/ChooseFile" unique_id=906440393]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Stamper"
+
+[node name="terrain" type="Button" parent="GeneralSettings/ChooseFile" unique_id=401454919]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Terrain"
+
+[node name="upgrades" type="Button" parent="GeneralSettings/ChooseFile" unique_id=1418826787]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Upgrades"
+
+[node name="FileEdit" type="Control" parent="GeneralSettings" unique_id=117737883]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+
+[node name="Instructions" type="VBoxContainer" parent="." unique_id=1668224778]
+layout_mode = 0
+offset_left = 762.0
+offset_top = 78.0
+offset_right = 1144.0
+offset_bottom = 602.0
+
+[node name="Welcome" type="Label" parent="Instructions" unique_id=1825840587]
+layout_mode = 2
+text = "Welcome to the"
+label_settings = SubResource("LabelSettings_sjmnu")
+horizontal_alignment = 1
+
+[node name="inofficial" type="Label" parent="Instructions" unique_id=526664928]
+layout_mode = 2
+text = "inofficial"
+horizontal_alignment = 1
+
+[node name="title" type="Label" parent="Instructions" unique_id=1940181626]
+layout_mode = 2
+text = "CUBETORY MAP EDITOR!"
+label_settings = SubResource("LabelSettings_sjmnu")
+horizontal_alignment = 1
+
+[node name="desc" type="Label" parent="Instructions" unique_id=421594839]
+layout_mode = 2
+text = "The official Map Editor relies on JSON files
+to edit the map in raw text, and this tool
+should help YOU create your own map
+without having to go through that mess :)
+
+If you have any questions, you'll have high
+chances to find your answers HERE:"
+
+[node name="Documentation" type="Button" parent="Instructions" unique_id=1006135463]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Open the Documentation"
+
+[node name="Tutorial" type="Button" parent="Instructions" unique_id=2116803599]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Starter Tutorial"
+
+[node name="Discord" type="Button" parent="Instructions" unique_id=835715618]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Ask the Cubetory Discord!"
+
+[connection signal="text_changed" from="GeneralSettings/FileSettings/LineEdit" to="." method="set_file_path"]
+[connection signal="pressed" from="GeneralSettings/FileSettings/open" to="." method="open_file_location"]
+[connection signal="pressed" from="GeneralSettings/ChooseFile/Meta" to="." method="open_meta_settings"]
+[connection signal="pressed" from="GeneralSettings/ChooseFile/recipes-fuel" to="." method="open_fuel_settings"]
+[connection signal="pressed" from="GeneralSettings/ChooseFile/recipes-pit" to="." method="open_pit_settings"]
+[connection signal="pressed" from="GeneralSettings/ChooseFile/recipes-stamper" to="." method="open_stamper_settings"]
+[connection signal="pressed" from="GeneralSettings/ChooseFile/terrain" to="." method="open_terrain_settings"]
+[connection signal="pressed" from="GeneralSettings/ChooseFile/upgrades" to="." method="open_upgrade_settings"]
+[connection signal="pressed" from="Instructions/Documentation" to="." method="open_doc"]
+[connection signal="pressed" from="Instructions/Discord" to="." method="open_dc"]

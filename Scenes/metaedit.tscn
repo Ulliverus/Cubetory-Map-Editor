@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://cc6kmvmodommy"]
+
+[ext_resource type="Script" uid="uid://egd3k58fwxnm" path="res://Scripts/metaedit.gd" id="1_6s01p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5dshr"]
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_6s01p"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_fvbhh"]
+font_size = 40
+
+[node name="Metaedit" type="VBoxContainer" unique_id=1846857834]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6s01p")
+
+[node name="Label" type="Label" parent="." unique_id=1101311773]
+layout_mode = 2
+text = "Edit Meta"
+label_settings = SubResource("LabelSettings_5dshr")
+
+[node name="Name" type="HBoxContainer" parent="." unique_id=933636035]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Name" unique_id=100153845]
+layout_mode = 2
+text = "Map Name      "
+label_settings = SubResource("LabelSettings_6s01p")
+
+[node name="LineEdit" type="LineEdit" parent="Name" unique_id=1152304082]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Map name"
+
+[node name="Description" type="HBoxContainer" parent="." unique_id=1314883850]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Description" unique_id=1369093486]
+layout_mode = 2
+text = "Description     "
+label_settings = SubResource("LabelSettings_6s01p")
+
+[node name="LineEdit" type="LineEdit" parent="Description" unique_id=1049254116]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Map description"
+
+[node name="MinResize" type="HBoxContainer" parent="." unique_id=744877685]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MinResize" unique_id=252638929]
+layout_mode = 2
+text = "Min Resize       "
+label_settings = SubResource("LabelSettings_6s01p")
+
+[node name="Slider" type="HSlider" parent="MinResize" unique_id=1717294851]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 0.1
+
+[node name="Num" type="Label" parent="MinResize" unique_id=628222469]
+layout_mode = 2
+text = "0.1"
+label_settings = SubResource("LabelSettings_fvbhh")
+
+[node name="MaxResize" type="HBoxContainer" parent="." unique_id=388233015]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MaxResize" unique_id=1151354824]
+layout_mode = 2
+text = "Max Resize      "
+label_settings = SubResource("LabelSettings_6s01p")
+
+[node name="Slider" type="HSlider" parent="MaxResize" unique_id=2079162278]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 2.0
+scrollable = false
+ticks_on_borders = true
+
+[node name="Num" type="Label" parent="MaxResize" unique_id=1994362377]
+layout_mode = 2
+text = "2  "
+label_settings = SubResource("LabelSettings_fvbhh")
+
+[node name="Sandbox" type="HBoxContainer" parent="." unique_id=1477701576]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Sandbox" unique_id=1657008344]
+layout_mode = 2
+text = "Sandbox mode                           "
+label_settings = SubResource("LabelSettings_6s01p")
+
+[node name="checkbox" type="CheckButton" parent="Sandbox" unique_id=684252386]
+layout_mode = 2
+
+[node name="save" type="Button" parent="." unique_id=1200461513]
+layout_mode = 2
+size_flags_vertical = 3
+text = "SAVE"
