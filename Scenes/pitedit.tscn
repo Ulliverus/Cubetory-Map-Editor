@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://dxrynml83og74"]
+
+[ext_resource type="Texture2D" uid="uid://04u5ql0j31g0" path="res://all_icons/no_bg/nutrient.png" id="1_i4m6p"]
+[ext_resource type="Script" uid="uid://c5ktfvawiihki" path="res://Scripts/pitedit.gd" id="1_nqq3g"]
+[ext_resource type="Texture2D" uid="uid://bi4k1kn4cgsr1" path="res://all_icons/no_bg/hydration.png" id="2_at1l5"]
+[ext_resource type="Texture2D" uid="uid://5wiupcyvdoui" path="res://all_icons/no_bg/construction.png" id="3_nqq3g"]
+[ext_resource type="Texture2D" uid="uid://dad38bhkxd21" path="res://all_icons/no_bg/power.png" id="4_52ab0"]
+[ext_resource type="Texture2D" uid="uid://dek45tnbe7yp4" path="res://all_icons/no_bg/music.png" id="5_ohxdw"]
+[ext_resource type="Texture2D" uid="uid://bwkaswktslofe" path="res://all_icons/no_bg/truck.png" id="6_w2wly"]
+[ext_resource type="Texture2D" uid="uid://cepvclgtp8way" path="res://all_icons/no_bg/hammer.png" id="7_1yex4"]
+[ext_resource type="Texture2D" uid="uid://8ui2ytgy67c0" path="res://all_icons/no_bg/timer.png" id="8_2nre3"]
+[ext_resource type="Texture2D" uid="uid://ctwdiymj2e44b" path="res://all_icons/no_bg/computer.png" id="9_n0vvc"]
+[ext_resource type="Texture2D" uid="uid://dncdum6rnlmje" path="res://all_icons/no_bg/spicy.png" id="10_w2le7"]
+[ext_resource type="Texture2D" uid="uid://bcylb70vnefbh" path="res://all_icons/no_bg/phone.png" id="11_luje6"]
+[ext_resource type="Texture2D" uid="uid://bdt3ok6m5576o" path="res://all_icons/no_bg/atomic.png" id="12_bsa6y"]
+[ext_resource type="PackedScene" uid="uid://calfk8h58g3ch" path="res://Scenes/cube_editor.tscn" id="13_at1l5"]
+
+[node name="pitedit" type="VBoxContainer" unique_id=1585063433]
+offset_right = 801.0
+offset_bottom = 480.0
+scale = Vector2(0.9, 0.9)
+script = ExtResource("1_nqq3g")
+
+[node name="ID" type="HBoxContainer" parent="." unique_id=1591360743]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="ID" unique_id=1136530197]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pit ID (Name in Editor, CANNOT CONTAIN SPACES!)"
+
+[node name="ID" type="LineEdit" parent="ID" unique_id=1789756928]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="HBoxContainer" parent="." unique_id=368836894]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Name" unique_id=438392207]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name (Visible in-game)"
+
+[node name="Name" type="LineEdit" parent="Name" unique_id=1740970688]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Icon" type="HBoxContainer" parent="." unique_id=1157813501]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Icon" unique_id=2621810]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pit recipe type"
+
+[node name="Icon" type="OptionButton" parent="Icon" unique_id=1258744742]
+layout_mode = 2
+size_flags_horizontal = 3
+expand_icon = true
+selected = 0
+item_count = 12
+popup/item_0/text = "nutrient"
+popup/item_0/icon = ExtResource("1_i4m6p")
+popup/item_0/id = 0
+popup/item_1/text = "hydration"
+popup/item_1/icon = ExtResource("2_at1l5")
+popup/item_1/id = 1
+popup/item_2/text = "construction"
+popup/item_2/icon = ExtResource("3_nqq3g")
+popup/item_2/id = 2
+popup/item_3/text = "thunder"
+popup/item_3/icon = ExtResource("4_52ab0")
+popup/item_3/id = 3
+popup/item_4/text = "music"
+popup/item_4/icon = ExtResource("5_ohxdw")
+popup/item_4/id = 4
+popup/item_5/text = "truck"
+popup/item_5/icon = ExtResource("6_w2wly")
+popup/item_5/id = 5
+popup/item_6/text = "hammer"
+popup/item_6/icon = ExtResource("7_1yex4")
+popup/item_6/id = 6
+popup/item_7/text = "watch"
+popup/item_7/icon = ExtResource("8_2nre3")
+popup/item_7/id = 7
+popup/item_8/text = "computer"
+popup/item_8/icon = ExtResource("9_n0vvc")
+popup/item_8/id = 8
+popup/item_9/text = "spicy"
+popup/item_9/icon = ExtResource("10_w2le7")
+popup/item_9/id = 9
+popup/item_10/text = "phone"
+popup/item_10/icon = ExtResource("11_luje6")
+popup/item_10/id = 10
+popup/item_11/text = "atomic"
+popup/item_11/icon = ExtResource("12_bsa6y")
+popup/item_11/id = 11
+
+[node name="Label" type="Label" parent="." unique_id=934122570]
+layout_mode = 2
+text = "CUBE RECIPE PATTERN                                                      ALL PATTERNS"
+horizontal_alignment = 1
+
+[node name="Pattern" type="HBoxContainer" parent="." unique_id=916285558]
+layout_mode = 2
+
+[node name="CubeEditor" parent="Pattern" unique_id=1679280136 instance=ExtResource("13_at1l5")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+can_random = false
+
+[node name="list" type="VBoxContainer" parent="Pattern" unique_id=1994488886]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ItemList" type="ItemList" parent="Pattern/list" unique_id=1999965427]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.25
+allow_search = false
+
+[node name="Edit" type="Button" parent="Pattern/list" unique_id=903844834]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+tooltip_text = "This doesnt work rn, no idea why"
+disabled = true
+text = "Edit cube pattern"
+
+[node name="Delete" type="Button" parent="Pattern/list" unique_id=157015685]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+text = "Delete cube pattern"
+
+[node name="Save" type="Button" parent="." unique_id=644053455]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+text = "SAVE"

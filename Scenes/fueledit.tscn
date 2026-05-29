@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://d48pqsbcmi2o"]
+
+[ext_resource type="Script" uid="uid://cotqi0xvesddl" path="res://Scripts/fueledit.gd" id="1_26jgl"]
+[ext_resource type="PackedScene" uid="uid://calfk8h58g3ch" path="res://Scenes/cube_editor.tscn" id="1_ht0ib"]
+[ext_resource type="Texture2D" uid="uid://bbn84e4kkjcsu" path="res://all_icons/overlay/fuel1.png" id="2_mqm3x"]
+[ext_resource type="Texture2D" uid="uid://bsr00runlwrnl" path="res://all_icons/overlay/fuel2.png" id="3_plphk"]
+[ext_resource type="Texture2D" uid="uid://drwn10m835hpm" path="res://all_icons/overlay/fuel3.png" id="4_4kke0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ht0ib"]
+font_size = 32
+
+[node name="FuelEdit" type="VBoxContainer" unique_id=1404714820]
+offset_top = 3.0
+offset_right = 950.0
+offset_bottom = 540.0
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_26jgl")
+
+[node name="id" type="HBoxContainer" parent="." unique_id=1818747944]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="id" unique_id=1066968539]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fuel ID (The cube's name in the editor, CANNOT CONTAIN SPACES!)"
+
+[node name="ID" type="LineEdit" parent="id" unique_id=314224468]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="name" type="HBoxContainer" parent="." unique_id=827771035]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="name" unique_id=126529952]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name (The cube's name in game, visible to players.)"
+
+[node name="Name" type="LineEdit" parent="name" unique_id=734554576]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="icon" type="HBoxContainer" parent="." unique_id=1286128195]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="icon" unique_id=346800212]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fuel Icon"
+
+[node name="FuelLevel" type="OptionButton" parent="icon" unique_id=267299174]
+layout_mode = 2
+size_flags_horizontal = 3
+expand_icon = true
+selected = 0
+item_count = 3
+popup/item_0/text = "fuel1"
+popup/item_0/icon = ExtResource("2_mqm3x")
+popup/item_0/id = 0
+popup/item_1/text = "fuel2"
+popup/item_1/icon = ExtResource("3_plphk")
+popup/item_1/id = 1
+popup/item_2/text = "fuel3"
+popup/item_2/icon = ExtResource("4_4kke0")
+popup/item_2/id = 2
+
+[node name="fuelvalue" type="HBoxContainer" parent="." unique_id=2121789367]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="fuelvalue" unique_id=1291093446]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fuel Value"
+
+[node name="FuelLevel" type="SpinBox" parent="fuelvalue" unique_id=1957911304]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 10000.0
+
+[node name="Label" type="Label" parent="." unique_id=491960501]
+layout_mode = 2
+text = "CUBE RECIPE                                          ALL FUEL CUBES                     "
+label_settings = SubResource("LabelSettings_ht0ib")
+horizontal_alignment = 1
+
+[node name="FuelCubes" type="HBoxContainer" parent="." unique_id=410388099]
+layout_mode = 2
+
+[node name="CubeEditor" parent="FuelCubes" unique_id=1679280136 instance=ExtResource("1_ht0ib")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+can_random = false
+
+[node name="list" type="VBoxContainer" parent="FuelCubes" unique_id=1079298912]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ItemList" type="ItemList" parent="FuelCubes/list" unique_id=63665902]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.25
+allow_search = false
+
+[node name="Edit" type="Button" parent="FuelCubes/list" unique_id=1172719907]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+tooltip_text = "This doesnt work rn, no idea why"
+disabled = true
+text = "Edit cube pattern"
+
+[node name="Delete" type="Button" parent="FuelCubes/list" unique_id=1307048897]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+text = "Delete cube pattern"
+
+[node name="save" type="Button" parent="." unique_id=1799484221]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+text = "SAVE"
