@@ -14,10 +14,13 @@ const Terrainedit = preload("uid://brcjfhaxke28f")
 @onready var terrain: Button = $GeneralSettings/ChooseFile/terrain
 @onready var upgrades: Button = $GeneralSettings/ChooseFile/upgrades
 @onready var open: Button = $GeneralSettings/FileSettings/open
+@onready var file_dialog: FileDialog = $FileDialog
+@onready var filepathobj: LineEdit = $GeneralSettings/FileSettings/LineEdit
 
 var filepath: String = ""
 
 func _ready():
+	file_dialog.hide()
 	meta.disabled = filepath == ""
 	recipes_fuel.disabled = filepath == ""
 	recipes_pit.disabled = filepath == ""
@@ -82,3 +85,10 @@ func open_terrain_settings() -> void:
 
 func open_doc() -> void:
 	OS.shell_open(ProjectSettings.globalize_path("res://Cubetory Editor Documentation.pdf"))
+
+func open_file_select() -> void:
+	file_dialog.show()
+
+func file_selected(path: String) -> void:
+	filepathobj.text = path
+	set_file_path(path)

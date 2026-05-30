@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://5fgsx0es3ow0"]
 
 [ext_resource type="Script" uid="uid://c7io40x8hpsy5" path="res://Scripts/main.gd" id="1_0fbet"]
+[ext_resource type="Texture2D" uid="uid://brki5llx816ih" path="res://filesearch.png" id="2_cgmvo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sjmnu"]
 font_size = 32
@@ -31,7 +32,16 @@ text = "     Map file:        "
 [node name="LineEdit" type="LineEdit" parent="GeneralSettings/FileSettings" unique_id=312728421]
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "Enter the name OF THE FOLDER of your map here..."
+size_flags_stretch_ratio = 0.85
+placeholder_text = "Enter map directory destination..."
+
+[node name="SelFile" type="Button" parent="GeneralSettings/FileSettings" unique_id=1388636643]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.13
+tooltip_text = "Find your map file directory"
+icon = ExtResource("2_cgmvo")
+expand_icon = true
 
 [node name="open" type="Button" parent="GeneralSettings/FileSettings" unique_id=1190761005]
 layout_mode = 2
@@ -127,7 +137,21 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Ask the Cubetory Discord!"
 
+[node name="FileDialog" type="FileDialog" parent="." unique_id=1725912088]
+oversampling_override = 1.0
+title = "Open a Directory"
+initial_position = 2
+size = Vector2i(1000, 500)
+visible = true
+ok_button_text = "Select"
+dialog_hide_on_ok = true
+file_mode = 2
+access = 2
+root_subfolder = "C:/"
+hidden_files_toggle_enabled = false
+
 [connection signal="text_changed" from="GeneralSettings/FileSettings/LineEdit" to="." method="set_file_path"]
+[connection signal="pressed" from="GeneralSettings/FileSettings/SelFile" to="." method="open_file_select"]
 [connection signal="pressed" from="GeneralSettings/FileSettings/open" to="." method="open_file_location"]
 [connection signal="pressed" from="GeneralSettings/ChooseFile/Meta" to="." method="open_meta_settings"]
 [connection signal="pressed" from="GeneralSettings/ChooseFile/recipes-fuel" to="." method="open_fuel_settings"]
@@ -137,3 +161,4 @@ text = "Ask the Cubetory Discord!"
 [connection signal="pressed" from="GeneralSettings/ChooseFile/upgrades" to="." method="open_upgrade_settings"]
 [connection signal="pressed" from="Instructions/Documentation" to="." method="open_doc"]
 [connection signal="pressed" from="Instructions/Discord" to="." method="open_dc"]
+[connection signal="dir_selected" from="FileDialog" to="." method="file_selected"]
