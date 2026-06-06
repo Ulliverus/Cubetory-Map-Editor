@@ -20,8 +20,8 @@ func _ready() -> void:
 	edit.pressed.connect(edit_pattern)
 	save.pressed.connect(save_data)
 	id.text_changed.connect(savebtntoggle)
-	if FileAccess.file_exists(main.filepath+"/recipes_fuel.bkp"):
-		fuel_patterns = FileAccess.open(main.filepath+"/recipes_fuel.bkp", FileAccess.READ).get_var()
+	if FileAccess.file_exists(main.filepath+"/recipes_fuel.json"):
+		fuel_patterns = JSON.parse_string(FileAccess.open(main.filepath+"/recipes_fuel.json", FileAccess.READ).get_as_text())
 		for i in fuel_patterns:
 			fuel_list.add_item(i + ": " + fuel_patterns[i]["title"] + ": " + str(fuel_patterns[i]["fuel_value"]), load("res://all_icons/overlay/"+fuel_patterns[i]["icon"]+".png"))
 	savebtntoggle("")
@@ -59,6 +59,4 @@ func savebtntoggle(text: String):
 
 func save_data():
 	var fuel_json = FileAccess.open(main.filepath+"/recipes_fuel.json", FileAccess.WRITE)
-	var fuel_save = FileAccess.open(main.filepath+"/recipes_fuel.bkp", FileAccess.WRITE)
 	fuel_json.store_string(JSON.stringify(fuel_patterns))
-	fuel_save.store_var(fuel_patterns)

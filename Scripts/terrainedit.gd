@@ -91,11 +91,10 @@ func _ready() -> void:
 	label.hide()
 	color_select.hide()
 	oreyieldmenu.hide()
-	if FileAccess.file_exists(main.filepath+"/terrain.bkp"):
-		terrain = FileAccess.open(main.filepath+"/terrain.bkp", FileAccess.READ).get_var()
+	if FileAccess.file_exists(main.filepath+"/terrain.json"):
+		terrain = JSON.parse_string(FileAccess.open(main.filepath+"/terrain.json", FileAccess.READ).get_as_text())
 		for i in terrain.keys():
 			list.add_item(i)
-
 
 func set_edit_type(index: int) -> void:
 	$TextureRect/Label.hide()
@@ -179,6 +178,4 @@ func close_oreyield_menu() -> void:
 
 func save_data() -> void:
 	var terrain_json = FileAccess.open(main.filepath+"/terrain.json", FileAccess.WRITE)
-	var terrain_save = FileAccess.open(main.filepath+"/terrain.bkp", FileAccess.WRITE)
 	terrain_json.store_string(JSON.stringify(terrain))
-	terrain_save.store_var(terrain)

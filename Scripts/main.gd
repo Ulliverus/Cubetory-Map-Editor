@@ -31,6 +31,7 @@ func _ready():
 
 func open_meta_settings() -> void:
 	for i in settingspanel.get_children():
+		i.save_data()
 		i.queue_free()
 	var metasettings = Metaedit.instantiate()
 	settingspanel.add_child(metasettings)

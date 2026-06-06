@@ -103,7 +103,7 @@ horizontal_alignment = 1
 
 [node name="inofficial" type="Label" parent="Instructions" unique_id=526664928]
 layout_mode = 2
-text = "inofficial"
+text = "unofficial"
 horizontal_alignment = 1
 
 [node name="title" type="Label" parent="Instructions" unique_id=1940181626]

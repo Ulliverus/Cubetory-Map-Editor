@@ -52,8 +52,8 @@ func _ready() -> void:
 	add_byproduct.pressed.connect(open_byprod_config)
 	pextranum.value_changed.connect(numparity)
 	pcubename.text_changed.connect(nameparity)
-	if FileAccess.file_exists(main.filepath+"/recipes_stamper.bkp"):
-		stamps = FileAccess.open(main.filepath+"/recipes_stamper.bkp", FileAccess.READ).get_var()
+	if FileAccess.file_exists(main.filepath+"/recipes_stamper.json"):
+		stamps = JSON.parse_string(FileAccess.open(main.filepath+"/recipes_stamper.json", FileAccess.READ).get_as_text())
 		for i in stamps.keys():
 			recipes.add_item(i)
 
@@ -150,6 +150,4 @@ func save_recipe():
 
 func save_data():
 	var stamper_json = FileAccess.open(main.filepath+"/recipes_stamper.json", FileAccess.WRITE)
-	var stamper_save = FileAccess.open(main.filepath+"/recipes_stamper.bkp", FileAccess.WRITE)
 	stamper_json.store_string(JSON.stringify(stamps))
-	stamper_save.store_var(stamps)

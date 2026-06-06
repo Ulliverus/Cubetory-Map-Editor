@@ -15,8 +15,8 @@ func _ready() -> void:
 	minslider.value_changed.connect(minvalue_changed)
 	maxslider.value_changed.connect(maxvalue_changed)
 	save.pressed.connect(save_data)
-	if FileAccess.file_exists(main.filepath+"/meta.bkp"):
-		values = FileAccess.open(main.filepath+"/meta.bkp", FileAccess.READ).get_var()
+	if FileAccess.file_exists(main.filepath+"/meta.json"):
+		values = JSON.parse_string(FileAccess.open(main.filepath+"/meta.json", FileAccess.READ).get_as_text())
 		maxslider.value = values.max_resize
 		minslider.value = values.min_resize
 		desc_edit.text = values.description
@@ -31,11 +31,9 @@ func maxvalue_changed(value: float) -> void:
 
 func save_data():
 	var meta_json = FileAccess.open(main.filepath+"/meta.json", FileAccess.WRITE)
-	var meta_save = FileAccess.open(main.filepath+"/meta.bkp", FileAccess.WRITE)
 	values.description = desc_edit.text
 	values.name = name_edit.text
 	values.max_resize = maxslider.value
 	values.min_resize = minslider.value
 	values.sandbox = sandboxcbx.button_pressed
 	meta_json.store_string(JSON.stringify(values))
-	meta_save.store_var(values)

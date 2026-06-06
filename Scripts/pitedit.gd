@@ -16,8 +16,8 @@ func _ready() -> void:
 	delete.pressed.connect(delete_pattern)
 	save.pressed.connect(save_data)
 	pit_id.text_changed.connect(savebtntoggle)
-	if FileAccess.file_exists(main.filepath+"/recipes_pit.bkp"):
-		pit_patterns = FileAccess.open(main.filepath+"/recipes_pit.bkp", FileAccess.READ).get_var()
+	if FileAccess.file_exists(main.filepath+"/recipes_pit.json"):
+		pit_patterns = JSON.parse_string(FileAccess.open(main.filepath+"/recipes_pit.json", FileAccess.READ).get_as_text())
 		for i in pit_patterns:
 			pit_list.add_item(i + ": " + pit_patterns[i]["title"], load("res://all_icons/no_bg/"+pit_patterns[i]["icon"]+".png"))
 	savebtntoggle("")
@@ -42,6 +42,5 @@ func savebtntoggle(text: String):
 
 func save_data():
 	var pit_json = FileAccess.open(main.filepath+"/recipes_pit.json", FileAccess.WRITE)
-	var pit_save = FileAccess.open(main.filepath+"/recipes_pit.bkp", FileAccess.WRITE)
 	pit_json.store_string(JSON.stringify(pit_patterns))
-	pit_save.store_var(pit_patterns)
+	

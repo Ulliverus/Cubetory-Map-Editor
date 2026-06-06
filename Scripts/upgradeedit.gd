@@ -25,14 +25,15 @@ func _ready() -> void:
 	save.pressed.connect(save_config)
 	upgrade_menu.hide()
 	save_all.pressed.connect(save_data)
-	if FileAccess.file_exists(main.filepath+"/upgrades.bkp"):
-		values = FileAccess.open(main.filepath+"/upgrades.bkp", FileAccess.READ).get_var()[2]
-		for i in values.keys()[values.size()-1].x+1:
-			add_upgrade_tier()
-		for i in values.keys()[values.size()-1].y+1:
-			add_upgrade_row()
-		set_rates(FileAccess.open("C:/Program Files (x86)/Steam/steamapps/common/Cubetory/my_maps/"+main.filepath+"/upgrades.bkp", FileAccess.READ).get_var()[0])
-		start_unlock.text = FileAccess.open("C:/Program Files (x86)/Steam/steamapps/common/Cubetory/my_maps/"+main.filepath+"/upgrades.bkp", FileAccess.READ).get_var()[1]
+	if FileAccess.file_exists(main.filepath+"/upgrades.json"):
+		values = organize_reveng(JSON.parse_string(FileAccess.open(main.filepath+"/upgrades.json", FileAccess.READ).get_as_text())["rows"])
+		if values != {}:
+			for i in values.keys()[values.size()-1].x+1:
+				add_upgrade_tier()
+			for i in values.keys()[values.size()-1].y+1:
+				add_upgrade_row()
+		set_rates(JSON.parse_string(FileAccess.open(main.filepath+"/upgrades.json", FileAccess.READ).get_as_text())["rates"])
+		start_unlock.text = arr_to_str(JSON.parse_string(FileAccess.open(main.filepath+"/upgrades.json", FileAccess.READ).get_as_text())["start_unlocked"])
 
 func add_upgrade_tier():
 	tiers.add_child(HBoxContainer.new())
@@ -95,9 +96,7 @@ func set_rates(rates: Array):
 
 func save_data():
 	var upgrades_json = FileAccess.open(main.filepath+"/upgrades.json", FileAccess.WRITE)
-	var upgrades_save = FileAccess.open(main.filepath+"/upgrades.bkp", FileAccess.WRITE)
 	upgrades_json.store_string(JSON.stringify({"rates": get_rates(),"start_unlocked": str_to_arr(start_unlock.text),"rows": organise(values.values())}))
-	upgrades_save.store_var([get_rates(), start_unlock.text, values])
 
 func organise(dict: Array) -> Array:
 	var out: Array = []
@@ -105,4 +104,17 @@ func organise(dict: Array) -> Array:
 		out.append([])
 	for i in dict.size():
 		out[i%edit_tier_cost.get_child_count()].append(dict[i])
+	return out
+
+func organize_reveng(arr: Array) -> Dictionary:
+	var out: Dictionary = {}
+	var x:=0
+	var y:=0
+	if arr == []:
+		return {}
+	for row in arr:
+		for ug in row:
+			out.get_or_add(str(Vector2i(x,y)), ug)
+			x+=1
+		y+=1
 	return out
