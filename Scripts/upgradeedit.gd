@@ -36,18 +36,26 @@ func _ready() -> void:
 		start_unlock.text = arr_to_str(JSON.parse_string(FileAccess.open(main.filepath+"/upgrades.json", FileAccess.READ).get_as_text())["start_unlocked"])
 
 func add_upgrade_tier():
-	tiers.add_child(HBoxContainer.new())
-	tiers.get_child(tiers.get_child_count()-1).size_flags_vertical = 3 #sets container sizing to fill and expand
-	for i in tiers.get_child(0).get_child_count():
-		tiers.get_child(-1).add_child(UGEditBtn.new())
-		tiers.get_child(-1).get_child(-1).init(Vector2i(tiers.get_child(-1).get_child_count()-1, tiers.get_child_count()-1))
+	if tiers.get_child_count() < 12:
+		tiers.add_child(HBoxContainer.new())
+		tiers.get_child(tiers.get_child_count()-1).size_flags_vertical = 3 #sets container sizing to fill and expand
+		for i in edit_tier_cost.get_child_count():
+			tiers.get_child(-1).add_child(UGEditBtn.new())
+			tiers.get_child(-1).get_child(-1).init(Vector2i(tiers.get_child(-1).get_child_count()-1, tiers.get_child_count()-1))
+	else:
+		add_tier.disabled = true
+		add_tier.text = "Max tier count reached"
 
 func add_upgrade_row():
-	edit_tier_cost.add_child(LineEdit.new())
-	edit_tier_cost.get_child(edit_tier_cost.get_child_count()-1).size_flags_horizontal = 3
-	for i in tiers.get_child_count():
-		tiers.get_child(i).add_child(UGEditBtn.new())
-		tiers.get_child(i).get_child(-1).init(Vector2i(tiers.get_child(i).get_child_count()-1, i))
+	if edit_tier_cost.get_child_count() < 10:
+		edit_tier_cost.add_child(LineEdit.new())
+		edit_tier_cost.get_child(edit_tier_cost.get_child_count()-1).size_flags_horizontal = 3
+		for i in tiers.get_child_count():
+			tiers.get_child(i).add_child(UGEditBtn.new())
+			tiers.get_child(i).get_child(-1).init(Vector2i(tiers.get_child(i).get_child_count()-1, i))
+	else:
+		add_row.disabled = true
+		add_row.text = "Max row count reached"
 
 func open_ug_config(pos: Vector2i):
 	upgrade_menu.show()
@@ -114,7 +122,7 @@ func organize_reveng(arr: Array) -> Dictionary:
 		return {}
 	for row in arr:
 		for ug in row:
-			out.get_or_add(str(Vector2i(x,y)), ug)
+			out.get_or_add(Vector2i(x,y), ug)
 			x+=1
 		y+=1
 	return out

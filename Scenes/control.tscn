@@ -130,6 +130,8 @@ text = "Open the Documentation"
 [node name="Tutorial" type="Button" parent="Instructions" unique_id=2116803599]
 layout_mode = 2
 size_flags_vertical = 3
+tooltip_text = "Unavailable :("
+disabled = true
 text = "Starter Tutorial"
 
 [node name="Discord" type="Button" parent="Instructions" unique_id=835715618]

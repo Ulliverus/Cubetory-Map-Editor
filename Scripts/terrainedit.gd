@@ -18,7 +18,7 @@ extends VBoxContainer
 @onready var list: ItemList = $Btns/List
 
 var terrain: Dictionary = {}
-var geysertype: String
+var geysertype: String = "Basic"
 const geyserstr = {3: "Basic", 4: "Shallow", 5: "Splash", 6: "Deep", 7: "Donut", 8: "SideSplash"}
 
 enum Feature {

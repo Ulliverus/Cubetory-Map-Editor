@@ -20,6 +20,7 @@ const RAND_1 = preload("uid://d310vy07p5ln8")
 const RAND_2 = preload("uid://d2b6nmq4cd5x4")
 
 @export var can_random: bool = true
+@export var pit_cubes: bool = false
 signal save_cube
 var pattern: Dictionary = {"pattern": ["WHITE", "WHITE", "WHITE", "WHITE", "WHITE", "WHITE"], "stamp": ""}
 const colstr = ["WHITE", "RED", "YELLOW", "BLUE", "GREEN", "PURPLE", "ORANGE", "BROWN"]
@@ -41,6 +42,19 @@ func _ready() -> void:
 	random_color.disabled = !can_random
 	if !can_random:
 		instructions.text = "This cube pattern\ncannot be randomized."
+	if pit_cubes:
+		set_stamp.add_icon_item(load("res://all_icons/no_bg/nutrient.png"), "Nutrient")
+		set_stamp.add_icon_item(load("res://all_icons/no_bg/hydration.png"), "Hydration")
+		set_stamp.add_icon_item(load("res://all_icons/no_bg/construction.png"), "Construction")
+		set_stamp.add_icon_item(load("res://all_icons/no_bg/power.png"), "Thunder")
+		set_stamp.add_icon_item(load("res://all_icons/no_bg/music.png"), "Music")
+		set_stamp.add_icon_item(load("res://all_icons/no_bg/truck.png"), "Truck")
+		set_stamp.add_icon_item(load("res://all_icons/no_bg/hammer.png"), "Hammer")
+		set_stamp.add_icon_item(load("res://all_icons/no_bg/timer.png"), "Watch")
+		set_stamp.add_icon_item(load("res://all_icons/no_bg/computer.png"), "Computer")
+		set_stamp.add_icon_item(load("res://all_icons/no_bg/spicy.png"), "Spicy")
+		set_stamp.add_icon_item(load("res://all_icons/no_bg/phone.png"), "Phone")
+		set_stamp.add_icon_item(load("res://all_icons/no_bg/atomic.png"), "Atomic")
 
 func shift_color(btn: Button):
 	if random_color.button_pressed:

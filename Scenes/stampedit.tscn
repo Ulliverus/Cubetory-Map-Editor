@@ -277,6 +277,7 @@ offset_top = 21.999998
 offset_right = 655.66675
 offset_bottom = 411.3333
 scale = Vector2(1.6, 1.6)
+pit_cubes = true
 
 [node name="num" type="SpinBox" parent="CubeEditor" unique_id=196263250]
 layout_mode = 2
@@ -297,6 +298,7 @@ scale = Vector2(0.8, 0.8)
 
 [node name="packedcube" parent="pack" unique_id=566106579 instance=ExtResource("25_f28sy")]
 layout_mode = 2
+pit_cubes = true
 
 [node name="num" type="SpinBox" parent="pack" unique_id=558428735]
 layout_mode = 2
