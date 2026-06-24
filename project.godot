@@ -13,6 +13,7 @@ config_version=5
 config/name="cubetory map editor"
 run/main_scene="uid://5fgsx0es3ow0"
 config/features=PackedStringArray("4.6", "Mobile")
+config/icon="uid://bg5l3kap2x3bm"
 
 [display]
 
