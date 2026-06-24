@@ -16,18 +16,20 @@ const Terrainedit = preload("uid://brcjfhaxke28f")
 @onready var open: Button = $GeneralSettings/FileSettings/open
 @onready var file_dialog: FileDialog = $FileDialog
 @onready var filepathobj: LineEdit = $GeneralSettings/FileSettings/LineEdit
+@onready var recent_files: PopupMenu = $RecentFiles
+@onready var load_recent: Button = $GeneralSettings/FileSettings/LineEdit/LoadRecent
 
+var recent_paths: Array = []
 var filepath: String = ""
 
 func _ready():
 	file_dialog.hide()
-	meta.disabled = filepath == ""
-	recipes_fuel.disabled = filepath == ""
-	recipes_pit.disabled = filepath == ""
-	recipes_stamper.disabled = filepath == ""
-	terrain.disabled = filepath == ""
-	upgrades.disabled = filepath == ""
-	open.disabled = filepath == ""
+	close_recent()
+	btntogglehaetschibaetschi()
+	if FileAccess.file_exists("user://.recentpaths.txt"):
+		recent_paths = FileAccess.open("user://.recentpaths.txt", FileAccess.READ).get_var()
+		for pth in recent_paths:
+			recent_files.add_item(pth)
 
 func open_meta_settings() -> void:
 	for i in settingspanel.get_children():
@@ -38,7 +40,7 @@ func open_meta_settings() -> void:
 
 func set_file_path(new_text: String) -> void:
 	filepath = new_text
-	_ready()
+	btntogglehaetschibaetschi()
 
 func open_upgrade_settings() -> void:
 	for i in settingspanel.get_children():
@@ -93,3 +95,32 @@ func open_file_select() -> void:
 func file_selected(path: String) -> void:
 	filepathobj.text = path
 	set_file_path(path)
+
+func open_bug_report() -> void:
+	OS.shell_open("https://github.com/Ulliverus/Cubetory-Map-Editor/issues")
+
+func close_recent() -> void:
+	recent_files.hide()
+
+func select_recent_path(idx: int) -> void:
+	filepath = recent_files.get_item_text(idx)
+	filepathobj.text = filepath
+	file_selected(filepath)
+
+func save_path_to_recent() -> void:
+	recent_paths.append(filepath)
+	recent_files.add_item(filepath)
+	FileAccess.open("user://.recentpaths.txt", FileAccess.WRITE).store_var(recent_paths)
+
+func open_history() -> void:
+	recent_files.show()
+
+func btntogglehaetschibaetschi():
+	meta.disabled = filepath == ""
+	recipes_fuel.disabled = filepath == ""
+	recipes_pit.disabled = filepath == ""
+	recipes_stamper.disabled = filepath == ""
+	terrain.disabled = filepath == ""
+	upgrades.disabled = filepath == ""
+	open.disabled = filepath == ""
+	load_recent.visible = filepath == ""

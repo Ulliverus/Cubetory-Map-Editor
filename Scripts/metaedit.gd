@@ -10,11 +10,14 @@ extends VBoxContainer
 @onready var sandboxcbx: CheckButton = $Sandbox/checkbox
 @onready var save: Button = $save
 var values: Dictionary = {"description": "", "max_resize": 2, "min_resize": 0.1, "name": "", "sandbox": true}
+const adj = ["awesome", "cool", "fun", "silly", "breathtaking", "wonderful", "very own", "scrumptious", "epic", "splendid", "extraordinary"]
 
 func _ready() -> void:
 	minslider.value_changed.connect(minvalue_changed)
 	maxslider.value_changed.connect(maxvalue_changed)
 	save.pressed.connect(save_data)
+	name_edit.text = "My map"
+	name_edit.text_changed.connect(block_empty_name)
 	if FileAccess.file_exists(main.filepath+"/meta.json"):
 		values = JSON.parse_string(FileAccess.open(main.filepath+"/meta.json", FileAccess.READ).get_as_text())
 		maxslider.value = values.max_resize
@@ -37,3 +40,7 @@ func save_data():
 	values.min_resize = minslider.value
 	values.sandbox = sandboxcbx.button_pressed
 	meta_json.store_string(JSON.stringify(values))
+
+func block_empty_name(t: String):
+	if t == "":
+		name_edit.text = "My "+adj.pick_random()+" map"

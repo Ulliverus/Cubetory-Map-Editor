@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c7io40x8hpsy5" path="res://Scripts/main.gd" id="1_0fbet"]
 [ext_resource type="Texture2D" uid="uid://brki5llx816ih" path="res://filesearch.png" id="2_cgmvo"]
+[ext_resource type="Texture2D" uid="uid://bd8yohqbhdxq2" path="res://recentsearch.png" id="2_vh8u0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sjmnu"]
 font_size = 32
@@ -34,6 +35,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.85
 placeholder_text = "Enter map directory destination..."
+
+[node name="LoadRecent" type="Button" parent="GeneralSettings/FileSettings/LineEdit" unique_id=639632601]
+layout_mode = 0
+offset_left = 367.0
+offset_right = 433.0
+offset_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.11
+icon = ExtResource("2_vh8u0")
+flat = true
+expand_icon = true
 
 [node name="SelFile" type="Button" parent="GeneralSettings/FileSettings" unique_id=1388636643]
 layout_mode = 2
@@ -130,9 +142,10 @@ text = "Open the Documentation"
 [node name="Tutorial" type="Button" parent="Instructions" unique_id=2116803599]
 layout_mode = 2
 size_flags_vertical = 3
-tooltip_text = "Unavailable :("
-disabled = true
-text = "Starter Tutorial"
+tooltip_text = "Impossible!
+How could there EVER be bugs in this code?
+XD"
+text = "Report a bug"
 
 [node name="Discord" type="Button" parent="Instructions" unique_id=835715618]
 layout_mode = 2
@@ -152,7 +165,31 @@ access = 2
 root_subfolder = "C:/"
 hidden_files_toggle_enabled = false
 
+[node name="RecentFiles" type="PopupMenu" parent="." unique_id=612615723]
+oversampling_override = 1.0
+title = "Recently opened file destinations"
+initial_position = 4
+size = Vector2i(700, 500)
+visible = true
+
+[node name="cancel" type="Button" parent="RecentFiles" unique_id=1632292654]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -124.0
+offset_top = -70.0
+offset_right = 124.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+text = "cancel
+"
+
 [connection signal="text_changed" from="GeneralSettings/FileSettings/LineEdit" to="." method="set_file_path"]
+[connection signal="pressed" from="GeneralSettings/FileSettings/LineEdit/LoadRecent" to="." method="open_history"]
 [connection signal="pressed" from="GeneralSettings/FileSettings/SelFile" to="." method="open_file_select"]
 [connection signal="pressed" from="GeneralSettings/FileSettings/open" to="." method="open_file_location"]
 [connection signal="pressed" from="GeneralSettings/ChooseFile/Meta" to="." method="open_meta_settings"]
@@ -162,5 +199,9 @@ hidden_files_toggle_enabled = false
 [connection signal="pressed" from="GeneralSettings/ChooseFile/terrain" to="." method="open_terrain_settings"]
 [connection signal="pressed" from="GeneralSettings/ChooseFile/upgrades" to="." method="open_upgrade_settings"]
 [connection signal="pressed" from="Instructions/Documentation" to="." method="open_doc"]
+[connection signal="pressed" from="Instructions/Tutorial" to="." method="open_bug_report"]
 [connection signal="pressed" from="Instructions/Discord" to="." method="open_dc"]
+[connection signal="confirmed" from="FileDialog" to="." method="save_path_to_recent"]
 [connection signal="dir_selected" from="FileDialog" to="." method="file_selected"]
+[connection signal="index_pressed" from="RecentFiles" to="." method="select_recent_path"]
+[connection signal="pressed" from="RecentFiles/cancel" to="." method="close_recent"]

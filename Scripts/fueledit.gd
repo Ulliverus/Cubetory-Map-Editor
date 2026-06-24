@@ -44,7 +44,8 @@ func delete_pattern():
 
 func edit_pattern():
 	var pattern: Dictionary = fuel_patterns[fuel_list.get_item_text(fuel_list.get_selected_items()[0]).get_slice(":", 0)]
-	id.text = pattern.keys()[0]
+	id.text = fuel_patterns.find_key(pattern)
+	savebtntoggle(fuel_patterns.find_key(pattern))
 	id.editable = false
 	fuel_name.text = pattern["title"]
 	fuel_name.editable = false

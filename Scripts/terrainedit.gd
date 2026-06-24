@@ -16,6 +16,9 @@ extends VBoxContainer
 @onready var weight: SpinBox = $Oreyield/CubeEditor/weight
 @onready var patternname: LineEdit = $Oreyield/CubeEditor/patternname
 @onready var list: ItemList = $Btns/List
+@onready var popup: AcceptDialog = $Warning
+@onready var add: Button = $Btns/Add
+@onready var unsel: Button = $Btns/List/unsel
 
 var terrain: Dictionary = {}
 var geysertype: String = "Basic"
@@ -82,15 +85,19 @@ enum Feature {
 	DeepGeyserBrown,
 	SplashGeyserBrown}
 
-var t: String
+var t: String = "empty"
 var oreyield: Array = []
 var feature: int
 
 func _ready() -> void:
+	popup.hide()
 	set_yield.hide()
+	unsel.hide()
 	label.hide()
 	color_select.hide()
 	oreyieldmenu.hide()
+	unsel.pressed.connect(unselect)
+	list.item_selected.connect(set_add_text)
 	if FileAccess.file_exists(main.filepath+"/terrain.json"):
 		terrain = JSON.parse_string(FileAccess.open(main.filepath+"/terrain.json", FileAccess.READ).get_as_text())
 		for i in terrain.keys():
@@ -135,15 +142,19 @@ func set_color(index: int) -> void:
 	feature =  Feature[geysertype+"Geyser"+color_select.get_item_text(index)]
 
 func add_terrain() -> void:
-	if t_name.text != "":
-		terrain.get_or_add(t_name.text, {"t": t, "biome": biome_select.text, feature_ore_ores(): get_feature()})
-		list.add_item(t_name.text)
-		t_name.text = ""
-		type_select.select(0)
-		set_edit_type(0)
-		oreyield = []
+	if list.get_selected_items().is_empty():
+		if t_name.text != "":
+			terrain.get_or_add(t_name.text, {"t": t, "biome": biome_select.text, feature_ore_ores(): get_feature()})
+			list.add_item(t_name.text)
+			t_name.text = ""
+			type_select.select(0)
+			set_edit_type(0)
+			oreyield = []
+			image.icon = load("res://terrain/empty.png")
+		else:
+			popup.show()
 	else:
-		pass
+		terrain.erase(list.get_item_text(list.get_selected_items()[0]))
 
 func append_yield(pattern: Dictionary):
 	oreyield.append({"weight": weight.value, "cube": pattern})
@@ -179,3 +190,12 @@ func close_oreyield_menu() -> void:
 func save_data() -> void:
 	var terrain_json = FileAccess.open(main.filepath+"/terrain.json", FileAccess.WRITE)
 	terrain_json.store_string(JSON.stringify(terrain))
+
+func set_add_text(_id: int):
+	add.text = "Delete"
+	unsel.show()
+
+func unselect():
+	list.deselect_all()
+	add.text = "Add"
+	unsel.hide()

@@ -82,9 +82,9 @@ func change_stamp(idx: int):
 	pattern["stamp"] = stamps[set_stamp.get_item_text(idx)]
 
 func save() -> void:
-	save_cube.emit(pattern)
+	save_cube.emit(pattern.duplicate(true))
 
-func set_pattern(p):
+func set_pattern(p: Dictionary = {"pattern": ["WHITE", "WHITE", "WHITE", "WHITE", "WHITE", "WHITE"], "stamp": ""}):
 	upper.get_child(0).self_modulate = colors[colstr.find(p["pattern"][0])]
 	bottom.get_child(0).self_modulate = colors[colstr.find(p["pattern"][1])]
 	left.get_child(0).self_modulate = colors[colstr.find(p["pattern"][2])]
@@ -97,3 +97,4 @@ func set_pattern(p):
 	right.icon = strtostamp[p["stamp"]]
 	front.icon = strtostamp[p["stamp"]]
 	back.icon = strtostamp[p["stamp"]]
+	pattern = p

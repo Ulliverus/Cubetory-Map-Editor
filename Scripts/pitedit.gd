@@ -5,6 +5,7 @@ extends VBoxContainer
 @onready var pit_name: LineEdit = $Name/Name
 @onready var pit_icon: OptionButton = $Icon/Icon
 @onready var cube_editor: VBoxContainer = $Pattern/CubeEditor
+@onready var edit: Button = $Pattern/list/Edit
 @onready var delete: Button = $Pattern/list/Delete
 @onready var save: Button = $Save
 @onready var pit_list: ItemList = $Pattern/list/ItemList
@@ -14,6 +15,7 @@ var pit_patterns: Dictionary = {}
 func _ready() -> void:
 	cube_editor.save_cube.connect(add_pattern)
 	delete.pressed.connect(delete_pattern)
+	edit.pressed.connect(edit_pattern)
 	save.pressed.connect(save_data)
 	pit_id.text_changed.connect(savebtntoggle)
 	if FileAccess.file_exists(main.filepath+"/recipes_pit.json"):
@@ -40,7 +42,18 @@ func delete_pattern():
 func savebtntoggle(text: String):
 	cube_editor.get_child(3).disabled = text == ""
 
+func edit_pattern():
+	var pattern: Dictionary = pit_patterns[pit_list.get_item_text(pit_list.get_selected_items()[0]).get_slice(":", 0)]
+	pit_id.text = pit_patterns.find_key(pattern)
+	savebtntoggle(pit_patterns.find_key(pattern))
+	pit_id.editable = false
+	pit_name.text = pattern["title"]
+	pit_name.editable = false
+	pit_icon.text = pattern["icon"]
+	pit_icon.icon = pit_list.get_item_icon(pit_list.get_selected_items()[0])
+	pit_icon.disabled = true
+	cube_editor.set_pattern(pattern["input"]["cube"])
+
 func save_data():
 	var pit_json = FileAccess.open(main.filepath+"/recipes_pit.json", FileAccess.WRITE)
 	pit_json.store_string(JSON.stringify(pit_patterns))
-	

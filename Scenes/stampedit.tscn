@@ -53,13 +53,19 @@ size_flags_vertical = 3
 [node name="add" type="Button" parent="stampedit" unique_id=2041180559]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.15
+size_flags_stretch_ratio = 0.1
 text = "ADD RECIPE"
+
+[node name="edit" type="Button" parent="stampedit" unique_id=1396096456]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+text = "EDIT RECIPE"
 
 [node name="save" type="Button" parent="stampedit" unique_id=1758021482]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.15
+size_flags_stretch_ratio = 0.1
 text = "SAVE"
 
 [node name="RecipeMenu" type="VBoxContainer" parent="." unique_id=500328918]
@@ -87,7 +93,7 @@ size_flags_stretch_ratio = 0.5
 
 [node name="Title" type="Label" parent="RecipeMenu/Title" unique_id=1547540445]
 layout_mode = 2
-text = "Recipe Name (The Recipe'ss name in Game, Visible to Players)                        "
+text = "Recipe Name (The Recipe's name in Game, Visible to Players)                          "
 
 [node name="Name" type="LineEdit" parent="RecipeMenu/Title" unique_id=1486117557]
 layout_mode = 2
@@ -122,6 +128,7 @@ text = "Recipe Icon                                                             
 layout_mode = 2
 size_flags_horizontal = 3
 expand_icon = true
+selected = 0
 item_count = 22
 popup/item_0/text = "boltcomponent"
 popup/item_0/icon = ExtResource("2_b1d5x")
@@ -210,6 +217,7 @@ vertical_alignment = 1
 [node name="Inputs" type="ItemList" parent="RecipeMenu/RecipeConfig/input" unique_id=176211529]
 layout_mode = 2
 size_flags_vertical = 3
+tooltip_text = "Select a recipe to edit"
 
 [node name="AddInput" type="Button" parent="RecipeMenu/RecipeConfig/input" unique_id=175540048]
 layout_mode = 2
@@ -232,10 +240,12 @@ vertical_alignment = 1
 [node name="Outputs" type="ItemList" parent="RecipeMenu/RecipeConfig/output" unique_id=1359419106]
 layout_mode = 2
 size_flags_vertical = 3
+tooltip_text = "Select a recipe to edit"
 
 [node name="Byproducts" type="ItemList" parent="RecipeMenu/RecipeConfig/output" unique_id=683424787]
 layout_mode = 2
 size_flags_vertical = 3
+tooltip_text = "Select a recipe to edit"
 
 [node name="AddOutput" type="Button" parent="RecipeMenu/RecipeConfig/output" unique_id=1936189237]
 layout_mode = 2
@@ -286,6 +296,7 @@ prefix = "Weight: "
 
 [node name="name" type="LineEdit" parent="CubeEditor" unique_id=1300820931]
 layout_mode = 2
+tooltip_text = "Set to already existing name to edit that recipe"
 placeholder_text = "Name (Editor only)"
 
 [node name="pack" type="VBoxContainer" parent="." unique_id=1574098695]
@@ -307,4 +318,11 @@ prefix = "Weight: "
 
 [node name="name" type="LineEdit" parent="pack" unique_id=849630818]
 layout_mode = 2
+tooltip_text = "Set to already existing name to edit that recipe"
 placeholder_text = "Name (Editor only)"
+
+[node name="Warning" type="AcceptDialog" parent="." unique_id=1733456556]
+oversampling_override = 1.0
+initial_position = 4
+visible = true
+dialog_close_on_escape = false

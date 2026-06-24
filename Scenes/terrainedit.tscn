@@ -120,6 +120,14 @@ wraparound_items = false
 scroll_hint_mode = 1
 tile_scroll_hint = true
 
+[node name="unsel" type="Button" parent="Btns/List" unique_id=281162843]
+layout_mode = 0
+offset_left = 638.46155
+offset_top = 0.61538696
+offset_right = 760.46155
+offset_bottom = 89.6154
+text = "Clear selection"
+
 [node name="Add" type="Button" parent="Btns" unique_id=1178777466]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -189,6 +197,14 @@ text = "Save Ore Yield"
 [node name="yield" type="ItemList" parent="Oreyield" unique_id=876242432]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Warning" type="AcceptDialog" parent="." unique_id=1476591128]
+oversampling_override = 1.0
+title = "No Terrain name"
+initial_position = 4
+size = Vector2i(260, 100)
+visible = true
+dialog_text = "Terrain name cannot be empty!"
 
 [connection signal="item_selected" from="terrainsettings/TypeSelect" to="." method="set_edit_type"]
 [connection signal="item_selected" from="terrainsettings/ColorSelect" to="." method="set_color"]
