@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cey1ljis2p4j0"]
+
+[ext_resource type="Script" uid="uid://cmw6k6ml5rlag" path="res://Scripts/ugrowname.gd" id="1_fg4fg"]
+[ext_resource type="Texture2D" uid="uid://6wbad04lprfj" path="res://all_icons/big/nutrient.png" id="1_fhmvi"]
+[ext_resource type="Texture2D" uid="uid://8qlbcv0oynwc" path="res://up.png" id="2_qabhs"]
+[ext_resource type="Texture2D" uid="uid://bfh7c40jipud4" path="res://down.png" id="3_fg4fg"]
+
+[node name="UGRowName" type="HBoxContainer" unique_id=1019875606]
+offset_right = 200.0
+offset_bottom = 81.0
+size_flags_vertical = 3
+script = ExtResource("1_fg4fg")
+
+[node name="tier" type="TextureRect" parent="." unique_id=238959455]
+layout_mode = 2
+texture = ExtResource("1_fhmvi")
+expand_mode = 2
+
+[node name="del" type="Button" parent="." unique_id=165901658]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Delete"
+
+[node name="move" type="VBoxContainer" parent="." unique_id=1708019011]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.36
+
+[node name="up" type="Button" parent="move" unique_id=385040899]
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("2_qabhs")
+expand_icon = true
+
+[node name="down" type="Button" parent="move" unique_id=531488596]
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("3_fg4fg")
+expand_icon = true
+
+[connection signal="pressed" from="del" to="." method="send_delete"]
+[connection signal="pressed" from="move/up" to="." method="send_up"]
+[connection signal="pressed" from="move/down" to="." method="send_down"]

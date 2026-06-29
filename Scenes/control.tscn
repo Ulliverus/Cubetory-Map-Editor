@@ -18,9 +18,9 @@ script = ExtResource("1_0fbet")
 
 [node name="GeneralSettings" type="VBoxContainer" parent="." unique_id=119785787]
 layout_mode = 0
-offset_top = 82.0
+offset_top = 2.0
 offset_right = 755.0
-offset_bottom = 596.0
+offset_bottom = 645.0
 
 [node name="FileSettings" type="HBoxContainer" parent="GeneralSettings" unique_id=502971110]
 layout_mode = 2
@@ -38,9 +38,10 @@ placeholder_text = "Enter map directory destination..."
 
 [node name="LoadRecent" type="Button" parent="GeneralSettings/FileSettings/LineEdit" unique_id=639632601]
 layout_mode = 0
-offset_left = 367.0
-offset_right = 433.0
-offset_bottom = 63.0
+offset_left = 388.0
+offset_top = -2.0
+offset_right = 445.0
+offset_bottom = 55.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.11
 icon = ExtResource("2_vh8u0")
@@ -50,7 +51,7 @@ expand_icon = true
 [node name="SelFile" type="Button" parent="GeneralSettings/FileSettings" unique_id=1388636643]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.13
+size_flags_stretch_ratio = 0.1
 tooltip_text = "Find your map file directory"
 icon = ExtResource("2_cgmvo")
 expand_icon = true
@@ -98,14 +99,14 @@ text = "Upgrades"
 [node name="FileEdit" type="Control" parent="GeneralSettings" unique_id=117737883]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 6.0
+size_flags_stretch_ratio = 10.0
 
 [node name="Instructions" type="VBoxContainer" parent="." unique_id=1668224778]
 layout_mode = 0
 offset_left = 762.0
-offset_top = 78.0
+offset_top = 22.0
 offset_right = 1144.0
-offset_bottom = 602.0
+offset_bottom = 514.0
 
 [node name="Welcome" type="Label" parent="Instructions" unique_id=1825840587]
 layout_mode = 2
@@ -157,7 +158,6 @@ oversampling_override = 1.0
 title = "Open a Directory"
 initial_position = 2
 size = Vector2i(1000, 500)
-visible = true
 ok_button_text = "Select"
 dialog_hide_on_ok = true
 file_mode = 2
@@ -170,7 +170,6 @@ oversampling_override = 1.0
 title = "Recently opened file destinations"
 initial_position = 4
 size = Vector2i(700, 500)
-visible = true
 
 [node name="cancel" type="Button" parent="RecentFiles" unique_id=1632292654]
 anchors_preset = 7
