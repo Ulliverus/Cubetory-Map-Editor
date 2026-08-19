@@ -7,7 +7,6 @@ Once you have it installed, unpack the zip and the Editor is ready to use!
 
 To run the executable, do not move it from its original position in the Zip-file.
 
-If you find any bugs or similar issues, or have an idea how to improve this Editor, let me (Ulliverus) know via the Discord
-link in the Editor.
+If you find any bugs or similar issues, or have an idea how to improve this Editor, let me (Ulliverus) know via the Issues page right here on Github.
 
 Have fun!
